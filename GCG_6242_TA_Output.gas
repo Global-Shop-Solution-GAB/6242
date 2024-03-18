@@ -1,0 +1,319 @@
+Program.Sub.ScreenSU.Start
+gui.Form1..create
+gui.Form1..caption("T&A Absentees")
+gui.Form1..size(18195,11475)
+gui.Form1..position(0,0)
+gui.Form1..event(unload,form1_unload)
+gui.Form1..alwaysontop(False)
+gui.Form1..fontname("Arial")
+gui.Form1..fontsize(8)
+gui.Form1..forecolor(0)
+gui.Form1..fontstyle(,,,,)
+gui.Form1..BackColor(-2147483633)
+gui.Form1..controlbox(True)
+gui.Form1..maxbutton(True)
+gui.Form1..minbutton(True)
+gui.Form1..mousepointer(0)
+gui.Form1..moveable(True)
+gui.Form1..sizeable(True)
+gui.Form1..ShowInTaskBar(True)
+gui.Form1..titlebar(True)
+gui.Form1.lbl2.create(label,"Month to view:",True,1125,255,1,2000,1300,True,0,Arial,8,-2147483633,0)
+gui.Form1.datepicker1.create(datepicker)
+gui.Form1.datepicker1.visible(True)
+gui.Form1.datepicker1.size(1980,285)
+gui.Form1.datepicker1.zorder(0)
+gui.Form1.datepicker1.position(3520,1300)
+gui.Form1.datepicker1.enabled(True)
+gui.Form1.picturebox1.create(picturebox)
+gui.Form1.picturebox1.size(15825,9090)
+gui.Form1.picturebox1.zorder(0)
+gui.Form1.picturebox1.position(2000,1725)
+gui.Form1.picturebox1.enabled(True)
+gui.Form1.picturebox1.fontname("Arial")
+gui.Form1.picturebox1.fontsize(8)
+gui.Form1.picturebox1.BackColor(16777215)
+gui.Form1.lvwPayType.create(listview)
+gui.Form1.lvwPayType.view(3)
+gui.Form1.lvwPayType.addlistviewcolumn("Pay Type",1000,0)
+gui.Form1.lvwPayType.visible(True)
+gui.Form1.lvwPayType.size(1065,1050)
+gui.Form1.lvwPayType.zorder(0)
+gui.Form1.lvwPayType.position(100,190)
+gui.Form1.lvwPayType.enabled(True)
+gui.Form1.lvwPayType.fontname("Arial")
+gui.Form1.lvwPayType.fontsize(8)
+gui.Form1.lvwPayType.event(lostfocus,lvwpaytype_lostfocus)
+gui.Form1.lvwDept.create(listview)
+gui.Form1.lvwDept.view(3)
+gui.Form1.lvwDept.addlistviewcolumn("Dept",1000,0)
+gui.Form1.lvwDept.visible(True)
+gui.Form1.lvwDept.size(1320,5235)
+gui.Form1.lvwDept.zorder(0)
+gui.Form1.lvwDept.position(100,1590)
+gui.Form1.lvwDept.enabled(True)
+gui.Form1.lvwDept.fontname("Arial")
+gui.Form1.lvwDept.fontsize(8)
+gui.Form1.lvwDept.event(lostfocus,lvwdept_lostfocus)
+gui.Form1.lvwAbsentee.create(listview)
+gui.Form1.lvwAbsentee.view(3)
+gui.Form1.lvwAbsentee.addlistviewcolumn("Absentee Code",1470,0)
+gui.Form1.lvwAbsentee.visible(True)
+gui.Form1.lvwAbsentee.size(1530,3645)
+gui.Form1.lvwAbsentee.zorder(0)
+gui.Form1.lvwAbsentee.position(100,7145)
+gui.Form1.lvwAbsentee.enabled(True)
+gui.Form1.lvwAbsentee.fontname("Arial")
+gui.Form1.lvwAbsentee.fontsize(8)
+gui.Form1.lvwAbsentee.event(lostfocus,lvwabsentee_lostfocus)
+gui.Form1.cmdDisplay.create(button)
+gui.Form1.cmdDisplay.caption("Display")
+gui.Form1.cmdDisplay.visible(True)
+gui.Form1.cmdDisplay.size(1470,735)
+gui.Form1.cmdDisplay.zorder(0)
+gui.Form1.cmdDisplay.position(16355,815)
+gui.Form1.cmdDisplay.enabled(True)
+gui.Form1.cmdDisplay.fontname("Arial")
+gui.Form1.cmdDisplay.fontsize(8)
+gui.Form1.cmdDisplay.event(click,cmddisplay_click)
+gui.Form1.lbl5.create(label,"Department(s):",True,1095,210,0,2000,545,True,0,Arial,8,-2147483633,0)
+gui.Form1.lbl6.create(label,"Absentee code(s):",True,1425,210,0,2000,905,True,0,Arial,8,-2147483633,0)
+gui.Form1.lbl7.create(label,"Pay Type(s):",True,1065,210,0,2000,185,True,0,Arial,8,-2147483633,0)
+gui.Form1.lblPayType.create(label,"",True,4020,255,0,3500,185,True,0,Arial,8,-2147483633,0)
+gui.Form1.lbl9.create(label,"",True,1935,255,0,200,200,True,0,Arial,8,-2147483633,0)
+gui.Form1.lbl10.create(label,"",True,1935,255,0,200,200,True,0,Arial,8,-2147483633,0)
+gui.Form1.lbl11.create(label,"",True,1935,255,0,200,200,True,0,Arial,8,-2147483633,0)
+gui.Form1.lblDept.create(label,"",True,14190,255,0,3500,545,True,0,Arial,8,-2147483633,0)
+gui.Form1.lblAbsentee.create(label,"",True,11460,255,0,3500,905,True,0,Arial,8,-2147483633,0)
+gui.Form1.lvwPayType.tabstop(True)
+gui.Form1.lvwPayType.tabindex(1)
+gui.Form1.lvwDept.tabstop(True)
+gui.Form1.lvwDept.tabindex(2)
+gui.Form1.lvwAbsentee.tabstop(True)
+gui.Form1.lvwAbsentee.tabindex(3)
+gui.Form1.datepicker1.tabstop(True)
+gui.Form1.datepicker1.tabindex(4)
+gui.Form1.cmdDisplay.tabstop(True)
+gui.Form1.cmdDisplay.tabindex(5)
+
+
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+Variable.Global.sPTQ.Declare(String)
+Variable.Global.sDeptQ.Declare(String)
+Variable.Global.sACQ.Declare(String)
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+Function.ODBC.Connection!con.OpenConnection(Variable.Ambient.PDSN,Variable.Ambient.PUser,Variable.Ambient.PPass,180)
+Function.Intrinsic.Control.CallSub(Loadlists)
+Gui.form1..show
+Program.Sub.Main.End
+
+program.sub.form1_unload.start
+Function.Intrinsic.Control.End
+Function.ODBC.Connection!Con.close
+program.sub.form1_unload.end
+
+Program.Sub.LoadLists.Start
+Variable.Local.sSql.Declare(String)
+Variable.Local.iCounter.Declare(Long)
+
+Variable.Local.iCounter.Set(0)
+
+Gui.Form1.lvwAbsentee.MultiSelect(true)
+Gui.Form1.lvwDept.MultiSelect(true)
+Gui.Form1.lvwPayType.MultiSelect(true)
+
+Function.ODBC.Connection!con.OpenRecordsetRO("rst1","select distinct pay_type from v_employee_mstr A, v_time_attendance B where A.employee = B.employee and B.rec_type = 'A'")
+Function.Intrinsic.Control.DoUntil(Variable.ODBC.con!rst1.EOF,=,True)
+	Gui.Form1.lvwPayType.AddListItem(Variable.Local.icounter,Variable.ODBC.con!rst1.FieldVal!PAY_TYPE)
+	Gui.Form1.lvwPayType.SetListItemProps(V.Local.iCounter.String,True,,255,,,,,)
+	Function.Intrinsic.Math.Add(Variable.Local.iCounter,1,Variable.Local.iCounter)
+
+	Function.ODBC.con!rst1.Movenext
+Function.Intrinsic.Control.Loop
+Function.ODBC.Con!rst1.Close
+
+Variable.Local.iCounter.Set(0)
+
+Function.ODBC.Connection!con.OpenRecordsetRO("rst1","select distinct dept from v_time_attendance where rec_type = 'A' order by dept")
+Function.Intrinsic.Control.DoUntil(Variable.odbc.con!rst1.eof,=,True)
+	Gui.Form1.lvwDept.AddListItem(Variable.Local.iCounter,Variable.ODBC.con!rst1.FieldVal!DEPT)
+	Gui.Form1.lvwDept.SetListItemProps(V.Local.iCounter.String,True,,255,,,,,)
+	Function.Intrinsic.Math.Add(Variable.Local.iCounter,1,Variable.Local.iCounter)
+
+	Function.ODBC.con!rst1.Movenext
+Function.Intrinsic.Control.Loop
+Function.ODBC.con!rst1.Close
+
+Variable.Local.iCounter.Set(0)
+
+Function.ODBC.Connection!con.OpenRecordsetRO("rst1","select distinct earnings_code from v_time_attendance where rec_type = 'A' order by earnings_code")
+Function.Intrinsic.Control.DoUntil(Variable.odbc.con!rst1.eof,=,True)
+	Gui.Form1.lvwAbsentee.AddListItem(Variable.Local.iCounter,Variable.ODBC.con!rst1.FieldVal!EARNINGS_CODE)
+	Gui.Form1.lvwAbsentee.SetListItemProps(V.Local.iCounter.String,True,,255,,,,,)
+	Function.Intrinsic.Math.Add(Variable.Local.iCounter,1,Variable.Local.iCounter)
+
+	Function.ODBC.con!rst1.Movenext
+Function.Intrinsic.Control.Loop
+Function.ODBC.con!rst1.Close
+
+Program.Sub.LoadLists.End
+
+program.sub.cmddisplay_click.start
+Variable.Local.sSql.Declare(String)
+Variable.Local.dtEDate.declare(Date)
+Variable.Local.dtBDate.Declare(Date)
+Variable.Local.sEDate.declare(String)
+Variable.Local.sBDate.Declare(String)
+Variable.Local.dtGoDate.Declare(Date)
+Variable.Local.dtCharge.Declare(Date)
+Variable.Local.sEmployee.Declare(String)
+Variable.Local.iColor.Declare(Long)
+
+Function.Intrinsic.Control.CallSub(Lvwabsentee_lostfocus)
+Function.Intrinsic.Control.CallSub(Lvwdept_lostfocus)
+Function.Intrinsic.Control.CallSub(Lvwpaytype_lostfocus)
+
+Variable.Local.dtGoDate.Set(Variable.Screen.Form1!datepicker1.Value)
+
+'Function.Intrinsic.UI.ClearCalendarFeatures
+Function.Intrinsic.ui.setcalxoffset(4)
+Function.Intrinsic.UI.setcalyoffset(48)
+Function.Intrinsic.UI.setcalxspacing(2)
+Function.Intrinsic.UI.setcalyspacing(2)
+
+Function.Intrinsic.Date.BeginningOfMonth(Variable.local.dtGoDate,Variable.Local.dtBDate)
+Function.Intrinsic.Date.EndOfMonth(Variable.local.dtGoDate,Variable.Local.dtEDate)
+Function.Intrinsic.string.format(Variable.Local.dtBDate,"Yyyy-Mm-Dd",Variable.Local.sBDate)
+Function.Intrinsic.string.format(Variable.Local.dtEDate,"Yyyy-Mm-Dd",Variable.Local.sEDate)
+
+Function.intrinsic.String.concat("select A.employee, A.name, A.charge_date, A.rec_type, B.pay_type, A.dept, A.earnings_code"," from v_time_attendance A, v_employee_mstr B where A.employee = B.employee and A.rec_type = 'A' ",Variable.Local.sSql)
+Function.Intrinsic.String.Concat(Variable.Local.sSql,"and A.charge_date between '",V.Local.sBDate,"' and '",V.Local.sEDate,"' and ",Variable.Local.sSql)
+Function.Intrinsic.String.Concat(Variable.Local.sSql,"B.pay_type IN (",V.Global.sPTQ,") and ",Variable.local.sSql)
+Function.Intrinsic.String.Concat(Variable.Local.sSql,"A.dept IN (",V.global.sDeptQ,") and ",Variable.local.sSql)
+Function.Intrinsic.String.Concat(Variable.Local.sSql,"A.earnings_code IN (",V.Global.sACQ,") order by A.employee, A.charge_date",Variable.Local.sSql)
+Function.ODBC.Connection!con.Openrecordsetro("rst1",Variable.Local.sSql)
+
+Function.Intrinsic.Control.DoUntil(Variable.ODBC.con!rst1.EOF,=,True)
+	Function.Intrinsic.String.PCase(Variable.ODBC.con!rst1.FieldVal!name,Variable.Local.sEmployee)
+	Function.Intrinsic.String.Concat(Variable.ODBC.con!rst1.FieldVal!Employee," - ",Variable.local.sEmployee,Variable.Local.sEmployee)
+'	Function.Intrinsic.UI.Msgbox(Variable.Local.sEmployee)
+	Variable.Local.dtCharge.Set(Variable.ODBC.con!rst1.FieldVal!charge_date)
+	Variable.Local.iColor.Set(Variable.Color.Blue)
+	Function.Intrinsic.UI.AddCalendarFeature(Variable.Local.dtCharge,"CELLTEXT",Variable.Local.sEmployee,Variable.Local.iColor,)
+	Function.odbc.con!rst1.movenext
+Function.Intrinsic.Control.Loop
+
+Function.ODBC.con!rst1.Close
+
+Gui.Form1.picturebox1.RenderCalendar(Variable.Local.dtGoDate)
+program.sub.cmddisplay_click.end
+
+program.sub.lvwpaytype_lostfocus.start
+Variable.Local.sPayType.Declare(String)
+Variable.Local.sPTText.Declare(String)
+Variable.Local.retvar.Declare(String)
+Variable.Local.i.Declare(Long)
+Variable.Local.lOrd.Declare(Long)
+Variable.Local.sDisplay.Declare(String)
+
+Variable.Local.i.Set(0)
+Variable.Local.lOrd.Set(0)
+Variable.Global.sPTQ.Set("")
+
+Gui.Form1.lvwPayType.retrieveselectedlistitems(Variable.Local.sPayType)
+
+Function.Intrinsic.string.split(Variable.Local.sPayType,"*!*",Variable.Local.retVar)
+Function.Intrinsic.Control.For(Variable.Local.i,Variable.Local.retVar.LBound,Variable.Local.retvar.UBound,1)
+	Gui.Form1.lvwPayType.listitemkeytoordinal(Variable.Local.retVar(variable.Local.i),Variable.Local.lOrd)
+	Variable.Local.sPTText.Set(Variable.Screen.Form1!lvwPayType.ListItemText(variable.Local.lOrd))
+	' build sql condition with sPTText
+	Function.Intrinsic.Control.If(Variable.Local.i,=,Variable.Local.retVar.UBound)
+		Function.Intrinsic.String.Concat(Variable.global.sPTQ,"'",V.Local.sPTText.rtrim,"'",Variable.global.sPTQ)
+		Function.Intrinsic.String.Concat(Variable.local.sDisplay,V.Local.sPTText.rtrim,Variable.local.sDisplay)
+	Function.Intrinsic.Control.Else
+		Function.Intrinsic.String.Concat(Variable.global.sPTQ,"'",V.Local.sPTText.rtrim,"',",Variable.global.sPTQ)
+		Function.Intrinsic.String.Concat(Variable.local.sDisplay,V.Local.sPTText.rtrim,",",Variable.local.sDisplay)
+	Function.intrinsic.control.endif
+Function.Intrinsic.Control.Next(Variable.Local.i)
+
+'Gui.Form1.lblPayType.caption(Variable.global.sPTQ)
+Gui.Form1.lblPayType.caption(Variable.local.sDisplay)
+program.sub.lvwpaytype_lostfocus.end
+
+program.sub.lvwdept_lostfocus.start
+Variable.Local.sDept.Declare(String)
+Variable.Local.sDeptText.Declare(String)
+Variable.Local.retvar.Declare(String)
+Variable.Local.i.Declare(Long)
+Variable.Local.lOrd.Declare(Long)
+Variable.local.sDisplay.declare(String)
+
+Variable.Local.i.Set(0)
+Variable.Local.lOrd.Set(0)
+Variable.Global.sDeptQ.Set("")
+
+Gui.Form1.lvwDept.retrieveselectedlistitems(Variable.Local.sDept)
+
+Function.Intrinsic.string.split(Variable.Local.sDept,"*!*",Variable.Local.retVar)
+Function.Intrinsic.Control.For(Variable.Local.i,Variable.Local.retVar.LBound,Variable.Local.retvar.UBound,1)
+	Gui.Form1.lvwDept.listitemkeytoordinal(Variable.Local.retVar(variable.Local.i),Variable.Local.lOrd)
+	Variable.Local.sDeptText.Set(Variable.Screen.Form1!lvwDept.ListItemText(variable.Local.lOrd))
+	' build sql condition with sDeptText
+	Function.Intrinsic.Control.If(Variable.Local.i,=,Variable.Local.retVar.UBound)
+		Function.Intrinsic.String.Concat(Variable.global.sDeptQ,"'",V.Local.sDeptText.rtrim,"'",Variable.global.sDeptQ)
+		Function.Intrinsic.String.Concat(Variable.local.sDisplay,V.Local.sDeptText.rtrim,Variable.local.sDisplay)
+	Function.Intrinsic.Control.Else
+		Function.Intrinsic.String.Concat(Variable.global.sDeptQ,"'",V.Local.sDeptText.rtrim,"',",Variable.global.sDeptQ)
+		Function.Intrinsic.String.Concat(Variable.local.sDisplay,V.Local.sDeptText.rtrim,",",Variable.local.sDisplay)
+	Function.intrinsic.control.endif
+Function.Intrinsic.Control.Next(Variable.Local.i)
+
+'Gui.Form1.lblDept.caption(Variable.global.sDeptQ)
+Gui.Form1.lblDept.caption(Variable.local.sDisplay)
+
+
+program.sub.lvwdept_lostfocus.end
+
+program.sub.lvwabsentee_lostfocus.start
+Variable.Local.sAC.Declare(String)
+Variable.Local.sACText.Declare(String)
+Variable.Local.retvar.Declare(String)
+Variable.Local.i.Declare(Long)
+Variable.Local.lOrd.Declare(Long)
+Variable.local.sDisplay.Declare(String)
+
+Variable.Local.i.Set(0)
+Variable.Local.lOrd.Set(0)
+Variable.Global.sACQ.Set("")
+
+Gui.Form1.lvwAbsentee.retrieveselectedlistitems(Variable.Local.sAC)
+
+Function.Intrinsic.string.split(Variable.Local.sAC,"*!*",Variable.Local.retVar)
+Function.Intrinsic.Control.For(Variable.Local.i,Variable.Local.retVar.LBound,Variable.Local.retvar.UBound,1)
+	Gui.Form1.lvwAbsentee.listitemkeytoordinal(Variable.Local.retVar(variable.Local.i),Variable.Local.lOrd)
+	Variable.Local.sACText.Set(Variable.Screen.Form1!lvwAbsentee.ListItemText(variable.Local.lOrd))
+	' build sql condition with sACText
+	Function.Intrinsic.Control.If(Variable.Local.i,=,Variable.Local.retVar.UBound)
+		Function.Intrinsic.String.Concat(Variable.global.sACQ,"'",V.Local.sACText.rtrim,"'",Variable.global.sACQ)
+		Function.Intrinsic.String.Concat(Variable.local.sDisplay,V.Local.sACText.rtrim,Variable.local.sDisplay)
+	Function.Intrinsic.Control.Else
+		Function.Intrinsic.String.Concat(Variable.global.sACQ,"'",V.Local.sACText.rtrim,"',",Variable.global.sACQ)
+		Function.Intrinsic.String.Concat(Variable.local.sDisplay,V.Local.sACText.rtrim,",",Variable.local.sDisplay)
+	Function.intrinsic.control.endif
+Function.Intrinsic.Control.Next(Variable.Local.i)
+
+'Gui.Form1.lblAbsentee.caption(Variable.global.sACQ)
+Gui.Form1.lblAbsentee.caption(Variable.local.sDisplay)
+program.sub.lvwabsentee_lostfocus.end
+
+Program.Sub.Comments.Start
+${$0$}$ATG_4079_TA_Output$}$SKT$}$5/23/2016
+${$1$}$$}$$}$0$}$25792$}$JBS033M-SCRIPT-1-HOOK$}$5/23/2016 1:13:23 PM$}$(Program: JB033A; Screen: JBS033M)
+
+Program.Sub.Comments.End
+
